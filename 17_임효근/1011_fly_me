@@ -1,0 +1,19 @@
+def MRange(Range_X_to_Y):
+    Move_Range = 0
+    Len_of_Move_Range = 0
+    for i in range(1,2**23):
+        Len_of_Move_Range += i
+        Move_Range += 1
+        if Len_of_Move_Range >= Range_X_to_Y:
+            return Move_Range
+        Len_of_Move_Range += i
+        Move_Range += 1
+        if Len_of_Move_Range >= Range_X_to_Y:
+            return Move_Range
+
+
+TestCase = int(input())
+
+for i in range(TestCase):
+    x,y = map(int,input().split( ))
+    print(MRange(y-x))

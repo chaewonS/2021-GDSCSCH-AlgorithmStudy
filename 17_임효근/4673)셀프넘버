@@ -1,0 +1,24 @@
+def SelfNum(list1):
+    from contextlib import suppress
+    for i in range(1,100001):
+        Base_Num = str(i)
+        Plus_Num = 0 
+        
+        for z in range(len(Base_Num)):
+             Plus_Num += int(Base_Num[z])
+        Plus_Num += int(Base_Num)
+       
+        with suppress(ValueError): list1.remove(Plus_Num)
+    return list1
+
+
+
+Base_List = list(range(10000))
+Base_List.remove(0)
+Base_List.append(10000)
+
+Self_Num_List = SelfNum(Base_List)
+
+
+for i in range(len(Self_Num_List)):
+    print(Self_Num_List[i])

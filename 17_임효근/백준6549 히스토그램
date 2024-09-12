@@ -1,0 +1,41 @@
+from collections import deque
+import sys
+
+while(True):
+    height = list(map(int, sys.stdin.readline().split()))
+    n = height.pop(0)
+
+    if n == 0:
+        break
+
+    stack = deque()
+    result = 0
+
+    #왼쪽부터 검사
+    for i in range(n):
+        while len(stack) != 0 and height[stack[-1]] > height[i]:
+            tmp = stack.pop()
+
+            if len(stack) == 0:
+                width = i
+            
+            else : 
+                width = i - stack[-1] -1
+
+            result = max(result, width * height[tmp])
+        stack.append(i)
+#인덱스가 이전 값보다 높이가 높을 경우만 stack에 값을 저장하고, 높이가 낮을 경우엔 
+#가로를 구해서 최소 값을 구한다.
+
+
+    while len(stack) !=0:
+        tmp = stack.pop()
+
+        if len(stack) == 0:
+            width = n
+        else:
+            width = n - stack[-1] -1
+        
+        result = max(result, width * height[tmp])
+
+    print(result)
